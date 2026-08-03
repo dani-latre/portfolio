@@ -5,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>embeddedspace</title>
     <link rel="stylesheet" href="styles_reducido.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     
         <script data-goatcounter="https://danit0man.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<div id="introScreen">
+    <p id="introText">daniel.42.latre@gmail.com</p>
+</div>
+    <!-- BLOQUE DE CONTACTO FIJO (esquina superior derecha) -->
+    <div class="contact-info-fixed">
+        <p class="contact-name">Daniel Latre</p>
+        <p><a href="tel:+34634055293">+34 634055293</a></p>
+        <p><a href="mailto:daniel.42.latre@gmail.com">daniel.42.latre@gmail.com</a></p>
+        <a href="#" id="cvLink">CV</a>
+    </div>
+    <header id="pageIntro">
+   
+</header>
 
     <div class="desktop-container">
         <!-- El JS llenará este contenedor -->
@@ -22,6 +38,16 @@
             <div id="modalMediaContainer"></div>
         </div>
     </div>
+    <div id="cvModal" class="cv-modal">
+   <div class="cv-modal-content">
+       <button id="cvCloseBtn" class="cv-close" aria-label="Cerrar">&times;</button>
+       <div id="cvBody"></div>
+   </div>
+   </div>
+    
+    <footer id="pageFooter">
+ 
+    </footer>
 
     <script src="gallery_reducido.js"></script>
 </body>
