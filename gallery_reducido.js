@@ -40,7 +40,7 @@ const TEXTOS = {
 
     SOPA:"SOPA fue una editorial ficticia de posters que nunca se llegaron a imprimir",
 
-    romance:"Aquello que haya podido necesitar @digital.romance.tt para promocionar su trabajo en los viajes que realizado para tatuar. Diseño gráfico, edicion de video y dirección estética.",
+    romance:"Aquello que haya podido necesitar @digital.romance.tt para promocionar su trabajo . Diseño gráfico, edicion de video y dirección estética.",
 
     breiner:"The Last Breiner fue una fiesta organizada por un grupo de dj's. Mi parte consistió en diseñar la parte visual. Tanto las publicaciones en redes como los visuales que acompañaron la sesión.",
 
