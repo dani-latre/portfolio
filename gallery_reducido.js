@@ -1,4 +1,5 @@
 const CV_DATA = {
+    ubicacion:"Barcelona",
     experiencia: [
         { role: "Auxiliar de montaje en espectáculos", place: "Penny Wise Iber. Zaragoza", dates: "2018-2022" },
         { role: "Prácticas profesionales en escenografía y construcción de decorados", place: "Architécnica Creativos. Zaragoza", dates: "2021" },
@@ -6,123 +7,78 @@ const CV_DATA = {
     ],
     formacion: [
         { role: "Grado en Bellas Artes", place: "Universidad de Castilla-La Mancha. Cuenca", dates: "2021-2025" },
-        { role: "Beca Erasmus", place: "Escola Superior Artística do Porto", dates: "2023-2024" },
         { role: "SICUE", place: "Universidad del País Vasco. Bilbao", dates: "2024-2025" },
+        { role: "Beca Erasmus", place: "Escola Superior Artística do Porto", dates: "2023-2024" },
         { role: "Grado Superior en Escultura aplicada al Espectáculo", place: "Escuela de Arte de Zaragoza", dates: "2019-2021" },
         { role: "Bachillerato en Artes Plásticas", place: "Escuela de Arte de Zaragoza", dates: "2017-2019" },
     ],
     herramientas: [
-        "Paquete Adobe", "Modelado 3D", "Vibe Coding", "Linux", "Carpintería básica",
-        "Electricidad básica", "Video Mapping", "Fotografía", "Paquete Office", "HTML/CSS", "ComfyUI"
+         "Paquete Adobe","Blender", "Zbrush","HTML/CSS", "ComfyUI", "Resolume Arena",  "Paquete Office", "Modelado 3D", "Vibe Coding", "Linux", "Carpintería básica", "Video Mapping", "Fotografía", "Ilustración", 
     ],
     idiomas: [
         { idioma: "Castellano", nivel: "nativo" },
         { idioma: "Inglés", nivel: "medio" },
-        { idioma: "Portugués", nivel: "básico" },
         { idioma: "Catalán", nivel: "comprensión" },
     ],
     actividad: [
-        { role: "Beca a la producción artística", place: "Can Felipa Barcelona", dates: "2025 - Actualidad" },
-        { role: "Exposición colectiva", place: "Espacio Espiral / Pluto Valencia", dates: "2026" },
-        { role: "Residente", place: "Residencias Artísticas Reinosa Cantabria", dates: "2023" },
+        { role: "Beca de producción artística", place: "Can Felipa. Barcelona", dates: "2025 - Actualidad" },
+        { role: "Colaborador", place: "Residencia de John Mark Hill. Tabakalera, Donosti", dates: "2026" },
+        { role: "Exposición colectiva", place: "Espacio Espiral / Pluto. Valencia", dates: "2025" },
+        { role: "Residente", place: "Residencias Artísticas Reinosa. Cantabria", dates: "2023" },
     ]
+    
 };
 
-
-// 1. DEFINE TUS TEXTOS AQUÍ UNA SOLA VEZ
-
 const TEXTOS = {
-    
-
     vacio: "",
+    postt: "2024\n_ilustración\n_modelado 3D\nIlustraciones gráficas realizadas para el periódico The Posttraumatic...",
+    SOPA: "SOPA fue una editorial ficticia de posters que nunca se llegaron a imprimir.",
+    romance: "2024/2025\n_dirección estética\n_diseño gráfico\n_edición de vídeo\nConjunto de piezas gráficas y audiovisuales para acompañar el trabajo de @digital.romance.tt como tatuadora",
+    breiner: "2024\n_motion graphics\n_diseño gráfico\n_videomapping\n_visuales(imágenes de @allahimsenicokseviyorum_2)\nCartelería, visuales y contenido para redes para el último evento del colectivo de DJs Badelbow & friends",
+    farola: "2024\n_editorial\n_preimpresión digital\nMaquetación de la publicación realizada para la exposición Making Things (ESAP, Oporto)",
 
-    postt:"ilustraciones gráficas realizadas para el periodico The Posttraumatic, en el que se muestran diferentes ilustraciones gráficas y mockups de diseño. Estas ilustraciones reflejan la creatividad y el estilo visual del periódico, destacando elementos de diseño gráfico y composición visual. Cada imagen representa un aspecto único del contenido del periódico, desde ilustraciones conceptuales hasta representaciones visuales de artículos y noticias.",
+    lyricVideo: "2026\nUnofficial lyric video de la canción 'Square Heart' 7038634357\nrealizado con John Mark Hill en Tabakalera, Donosti",
+};
 
-    SOPA:"SOPA fue una editorial ficticia de posters que nunca se llegaron a imprimir",
-
-    romance:"Aquello que haya podido necesitar @digital.romance.tt para promocionar su trabajo . Diseño gráfico, edicion de video y dirección estética.",
-
-    breiner:"The Last Breiner fue una fiesta organizada por un grupo de dj's. Mi parte consistió en diseñar la parte visual. Tanto las publicaciones en redes como los visuales que acompañaron la sesión.",
-
-    farola:"Y después... me casé con una farola. formó parte de la exposición making things, ESAP, Oporto, 2024. Trabajo editorial y preimpresión digital. Maquetación de textos y edición de fotografías. ",
-    
-    sassy:"Sassy Colective es un proyecto de diseño gráfico que celebra la diversidad y la creatividad a través de una serie de imágenes y videos. El proyecto busca transmitir un mensaje de empoderamiento y autoexpresión, utilizando técnicas de diseño gráfico para crear contenido visual que inspire y conecte con el público objetivo.",
-
-    
-}
-
-
-
-
-// 1.b TÍTULOS CORTOS PARA LA ESQUINA INFERIOR IZQUIERDA
-// Añade aquí una entrada por cada "ref" que uses en mediaItems
 const TITULOS = {
     postt: "The Posttraumatic",
     beach: "Beach",
     romance: "Digital Romance",
     breiner: "The Last Breiner",
-    farola: "Y después... me casé con una farola",
-    sassy: "Sassy colective",
-    vacio: "",
-}
- 
+    farola: "Y después...\nme casé con una farola",
+    sassy: "Sassy Colective",
+    lyricVideo: "Lyric Video 7038634357",
+    vacio: ""
+};
 
-                
-                
-                const mediaItems = [
-                  // Ejemplo con pie de foto
-                  
-                
-                 
-                   // {src: "grafico_diseño/periodico.avif", ref: "postt"},
-                   // {src: "grafico_diseño/periodico_1.png", ref: "postt"},
-                   // {src: "grafico_diseño/mockup cold hug.png", ref: "beach"},
-                   {src: "grafico_diseño/111.png", ref: "farola", tools: "Indesign_Photoshop"},
-                    {src: "grafico_diseño/222.png", ref: "farola", tools: "Indesign_Photoshop"},
-                    {src: "grafico_diseño/333.png", ref: "farola", tools: "Indesign_Photoshop"},
-                    {src: "grafico_diseño/farola_construirlominimo_9.jpg", ref: "farola", tools: "Lightroom"},
-                    
+const mediaItems = [
+    { src: "grafico_diseño/digital_romance_patron.png", ref: "romance", tools: "fotografía_Pixel 4a 5g" },
+    { src: "grafico_diseño/digital_romance_logo 1.png", ref: "romance", tools: "Illustrator_Photoshop" },
+    { src: "grafico_diseño/digital_romance_suiza.png", ref: "romance", tools: "Blender_Illustrator_Photoshop" },
+    { src: "grafico_diseño/romance_opt.mp4", type: "video", ref: "romance", tools: "video_Pixel 4a 5g" },
+    { src: "grafico_diseño/romance_recortado.mp4", type: "video", ref: "romance", size: "size-s",tools: "Blender_Premiere" },
+    { src: "grafico_diseño/d.png", ref: "romance", tools: "fotografia_Pixel 4a 5g" },
 
-                    {src: "grafico_diseño/digital_romance_logo.png", ref: "romance", tools: "Illustrator_Photoshop"},
-                    {src: "grafico_diseño/REFELCTANTE OPTIMIZADO.mp4", x: 190, y: 8000, type: "video", ref: "romance", tools: "Pixel 4a 5g"},
-                    {src: "grafico_diseño/romance_recortado.mp4", x: 190, y: 8000, type: "video", ref: "romance", tools: "Blender_Premiere"},
-                    {src: "grafico_diseño/digital_romance_suiza.png", ref: "romance", tools: "Blender_Illustrator_Photoshop"},
+    { src: "grafico_diseño/111.png",size: "size-m", ref: "farola", tools: "Indesign_Photoshop" },
+    { src: "grafico_diseño/222.png", size: "size-m", ref: "farola", tools: "Indesign_Photoshop" },
+    { src: "grafico_diseño/333.png", size: "size-m", ref: "farola", tools: "Indesign_Photoshop" },
 
-                    {src: "grafico_diseño/breiner_mockup_inclinado.png", ref: "breiner", tools: "Illustrator_Photoshop(mockup)"},
-                    {src: "grafico_diseño/breiner_reel_bueno_1.mp4", x: 190, y: 8000, type: "video", ref: "breiner", tools: "Cinema 4D_After Effects_Premiere"},
-                    {src: "grafico_diseño/breiner_video.mp4", x: 190, y: 8000, type: "video", ref: "breiner", tools: "Resolume Arena_Premiere"},
+    { src: "grafico_diseño/breiner_mockup_inclinado.png", ref: "breiner", tools: "Illustrator_Photoshop(mockup)" },
+    { src: "grafico_diseño/breiner_video_1.mp4", type: "video", ref: "breiner", tools: "Resolume Arena_Premiere" },
+    { src: "grafico_diseño/breiner_reel_bueno_1.mp4", type: "video", ref: "breiner", size:"size-s", tools: "Cinema 4D_After Effects_Premiere" },
+    { src: "grafico_diseño/breiner_video_2.mp4", type: "video", ref: "breiner", tools: "Resolume Arena_Premiere" },
 
-                    {src: "grafico_diseño/sopa_mockup_1.png", ref: "SOPA", tools: "Blender_Photoshop_Figma"},
-                    {src: "grafico_diseño/sopa_mockup_2.png", ref: "SOPA", tools: "Photoshop_Figma"},
-                    {src: "grafico_diseño/sopa_mockup_3.png", ref: "SOPA", tools: "Photoshop_Figma"},
+    { src: "grafico_diseño/SQUARE_HEART.jpg", ref: "lyricVideo", size: "size-m", tools: "tela_reflectante_corte láser" },
+    { src: "grafico_diseño/square_heart_opt.mp4", type: "video", ref: "lyricVideo", tools: "tela_reflectante_corte_ láser" },
+    
 
-                  //  {src: "grafico_diseño/pecata_1.png", ref: "pecata"},
-                   // {src: "https://dani-latre.xyz/media/Fuegos%20.mp4",  type: "video", caption: "Fuegos - Movimiento"},
+    { src: "grafico_diseño/periodico_2.JPG", ref: "postt", tools: "Zbrush_Blender_Illustrator" },
+    { src: "grafico_diseño/instrucciones5.jpg", ref: "postt", tools: "Zbrush_Blender_Illustrator" },
+    { src: "grafico_diseño/periodico_3_mosca.png", ref: "postt", tools: "Illustrator" },
+    { src: "grafico_diseño/periodico_1.png", ref: "postt", tools: "Illustrator" },
 
-                ];
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                    
-                   
-                   
-                    
-                    //{src: "https://dani-latre.xyz/media/Ruta%20Modelo.mp4", x: 1000, y: 5000, type: "video"},
-                
-                
-                
-                
-                
+];
 
-
-// Ítem actualmente abierto en el modal (para poder navegar con flechas)
 let currentModalItem = null;
 
 function initGallery() {
@@ -140,9 +96,9 @@ function initGallery() {
         }
     });
 
+    
+
     groups.forEach(group => {
-        // Guardamos en cada item una referencia a los demás items de su grupo
-        // y su posición dentro de él, para poder navegar con las flechas del modal.
         group.items.forEach((item, i) => {
             item.groupItems = group.items;
             item.indexInGroup = i;
@@ -150,7 +106,7 @@ function initGallery() {
 
         const groupContainer = document.createElement("div");
         groupContainer.className = "group-container";
-        groupContainer.dataset.ref = group.ref; // <-- usado por el título fijo de sección
+        groupContainer.dataset.ref = group.ref;
 
         const mediaList = document.createElement("div");
         mediaList.className = "media-list";
@@ -158,36 +114,41 @@ function initGallery() {
         group.items.forEach(item => {
             const mediaWrapper = document.createElement("div");
             mediaWrapper.className = "media-wrapper";
-            let media = (item.type === "video" || item.src.endsWith('.mp4')) 
-                ? document.createElement("video") 
-                : document.createElement("img");
+            if (item.size) mediaWrapper.classList.add(item.size);
+
+            const isVideo = item.type === "video" || item.src.endsWith('.mp4');
+            const media = document.createElement(isVideo ? "video" : "img");
             media.src = item.src;
-            if(item.type === "video" || item.src.endsWith('.mp4')){
-                media.loop = true; media.muted = true; media.autoplay = true; media.playsInline = true;
-            }
+            
+     if (isVideo) {
+    media.loop = true;
+    media.muted = true;
+    media.autoplay = true;
+    media.playsInline = true;
+    media.preload = 'metadata';
+
+    media.addEventListener('loadedmetadata', () => {
+        media.currentTime = media.duration / 2;
+    }, { once: true });
+}
             media.dataset.index = item.originalIndex;
 
-            const toolsText = item.tools;
-            if (toolsText) {
-                media.dataset.info = toolsText;
+            if (item.tools) {
+                media.dataset.info = item.tools;
             }
 
             mediaWrapper.appendChild(media);
             mediaList.appendChild(mediaWrapper);
-                mediaWrapper.addEventListener('click', (e) => {
-        // Solo si estamos en móvil (ancho menor a 768px)
-        if (window.innerWidth <= 768) {
-            const parentGroup = mediaWrapper.closest('.group-container');
-            
-            // Alternamos la clase para mostrar/ocultar el pie
-            parentGroup.classList.toggle('active-mobile');
-            
-            // Cerramos los otros pies de página que pudieran estar abiertos
-            document.querySelectorAll('.group-container').forEach(g => {
-                if (g !== parentGroup) g.classList.remove('active-mobile');
+
+            // Handler táctil/móvil centralizado
+            mediaWrapper.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    groupContainer.classList.toggle('active-mobile');
+                    document.querySelectorAll('.group-container').forEach(g => {
+                        if (g !== groupContainer) g.classList.remove('active-mobile');
+                    });
+                }
             });
-        }
-    });
         });
 
         const captionWrapper = document.createElement("div");
@@ -205,31 +166,20 @@ function initGallery() {
         groupContainer.appendChild(mediaList);
         groupContainer.appendChild(captionWrapper);
         imageSpace.appendChild(groupContainer);
-
-       // SUSTITUYE EL BLOQUE QUE ME HAS PASADO POR ESTE:
-const firstMedia = mediaList.querySelector("img, video");
-
-// Ya no calculamos el offsetHeight / 2. 
-// Simplemente nos aseguramos de que el contenedor empiece arriba del todo.
-captionWrapper.style.paddingTop = "0px"; 
-
-// Opcional: Si quieres que el texto tenga un margen de cortesía 
-// para no estar pegado al borde superior del grupo:
-// captionWrapper.style.paddingTop = "20px";
-    });
-    document.querySelectorAll('.media-wrapper').forEach(wrapper => {
-        wrapper.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                // Alterna la clase en el BODY, así afecta a todos los grupos
-                document.body.classList.toggle('show-captions-mobile');
-            }
-        });
     });
 
-    function setupCaptionBehavior() {
+    setupModal();
+    setupSectionTitle();
+    setupTooltips();
+    setupIntroScreen();
+    setupCVModal();
+    setupCaptionBehavior();
+     setupNavIcon();
+}
+
+function setupCaptionBehavior() {
     function apply() {
         const isMobile = window.innerWidth <= 768;
-
         document.querySelectorAll('.group-container').forEach(group => {
             const mediaList = group.querySelector('.media-list');
             const stickyContent = group.querySelector('.sticky-content');
@@ -242,33 +192,17 @@ captionWrapper.style.paddingTop = "0px";
 
             const imagesHeight = mediaList.offsetHeight;
             const neededForSticky = window.innerHeight;
-
-            // Si el grupo no tiene suficiente altura de imágenes para que el efecto
-            // "pegado" tenga recorrido, el texto se coloca fijo abajo de forma estática
-            // (sin animación), en vez de forzar hueco extra artificial en el grupo.
             stickyContent.classList.toggle('sticky-static', imagesHeight < neededForSticky);
         });
     }
 
     apply();
-    window.addEventListener('load', apply);
-    window.addEventListener('resize', apply);
+    window.addEventListener('resize', apply, { passive: true });
 }
-
-setupModal();
-    setupSectionTitle();
-    setupTooltips();
-    setupIntroScreen();
-    setupCVModal();
-    setupCaptionBehavior();
-} 
-
 
 function setupIntroScreen() {
     const intro = document.getElementById('introScreen');
     if (!intro) {
-        // No hay intro en esta página: avisamos igualmente para que
-        // setupSectionTitle() no se quede esperando el evento.
         document.dispatchEvent(new Event('introFinished'));
         return;
     }
@@ -278,31 +212,19 @@ function setupIntroScreen() {
     setTimeout(() => {
         intro.classList.add('intro-hidden');
         document.body.classList.remove('intro-active');
-        document.dispatchEvent(new Event('introFinished')); // 👈 añadido
+        document.dispatchEvent(new Event('introFinished'));
 
-        setTimeout(() => {
-            intro.remove();
-        }, 1000);
+        setTimeout(() => intro.remove(), 1000);
     }, 1500);
 }
-// Divide el texto de un párrafo en <span> por palabra, para poder luego
-// saber en qué línea (ya renderizada) cae cada una.
-function wrapTextIntoWordSpans(el, text) {
-    el.innerHTML = '';
-    if (!text) return;
-    const words = text.split(/\s+/).filter(Boolean);
-    words.forEach((word, i) => {
-        const span = document.createElement('span');
-        span.className = 'caption-word';
-        span.textContent = word + (i < words.length - 1 ? ' ' : '');
-        el.appendChild(span);
-    });
-}
 
+function wrapTextIntoWordSpans(el, text) {
+    el.textContent = text || '';
+}
 
 function ensureModalStructure() {
     const container = document.getElementById("modalMediaContainer");
-    if (document.getElementById('modalMediaWrapper')) return;
+    if (!container || document.getElementById('modalMediaWrapper')) return;
 
     container.innerHTML = '';
 
@@ -329,7 +251,6 @@ function ensureModalStructure() {
     wrapper.appendChild(zoneRight);
     container.appendChild(wrapper);
 
-    // Flecha personalizada que sigue al ratón (con mix-blend-mode)
     let cursorArrow = document.getElementById('modalCursorArrow');
     if (!cursorArrow) {
         cursorArrow = document.createElement('div');
@@ -342,9 +263,7 @@ function ensureModalStructure() {
         cursorArrow.style.display = 'block';
         cursorArrow.style.left = e.clientX + 'px';
         cursorArrow.style.top = e.clientY + 'px';
-        cursorArrow.style.transform = flip
-            ? 'translate(-50%, -50%) scaleX(-1)'
-            : 'translate(-50%, -50%) scaleX(1)';
+        cursorArrow.style.transform = flip ? 'translate(-50%, -50%) scaleX(-1)' : 'translate(-50%, -50%) scaleX(1)';
     }
 
     zoneLeft.addEventListener('mousemove', (e) => moveArrow(e, false));
@@ -359,9 +278,13 @@ function openModalItem(item) {
     ensureModalStructure();
     const modal = document.getElementById("mediaModal");
     const inner = document.getElementById("modalMediaInner");
-    inner.innerHTML = (item.type === "video" || item.src.endsWith('.mp4'))
+    if (!modal || !inner) return;
+
+    const isVideo = item.type === "video" || item.src.endsWith('.mp4');
+    inner.innerHTML = isVideo
         ? `<video src="${item.src}" controls autoplay></video>`
         : `<img src="${item.src}">`;
+
     modal.style.display = "flex";
     updateModalNavVisibility();
 }
@@ -372,8 +295,7 @@ function updateModalNavVisibility() {
     const total = currentModalItem && currentModalItem.groupItems ? currentModalItem.groupItems.length : 0;
     const enabled = total > 1;
     [zoneLeft, zoneRight].forEach(zone => {
-        if (!zone) return;
-        zone.classList.toggle('zone-disabled', !enabled);
+        if (zone) zone.classList.toggle('zone-disabled', !enabled);
     });
 }
 
@@ -388,33 +310,31 @@ function showModalStep(direction) {
 
 function closeModal() {
     const modal = document.getElementById("mediaModal");
-    modal.style.display = "none";
+    if (modal) modal.style.display = "none";
     const inner = document.getElementById("modalMediaInner");
     if (inner) inner.innerHTML = "";
     currentModalItem = null;
 }
 
 function setupModal() {
-    // Si es móvil, no configuramos el modal
     if (window.innerWidth <= 768) return;
 
     const modal = document.getElementById("mediaModal");
+    if (!modal) return;
 
     document.querySelectorAll(".media-wrapper img, .media-wrapper video").forEach(el => {
         el.addEventListener("click", (e) => {
             const idx = e.target.dataset.index;
             const item = mediaItems[idx];
-            openModalItem(item);
+            if (item) openModalItem(item);
         });
     });
 
     modal.onclick = (e) => {
-        // No cerrar si el click viene de las zonas de navegación sobre la imagen
         if (e.target.closest && e.target.closest('.modal-nav-zone')) return;
         closeModal();
     };
 
-    // Solo registramos el listener de teclado una vez
     if (!document.body.dataset.modalKeysBound) {
         document.body.dataset.modalKeysBound = 'true';
         document.addEventListener('keydown', (e) => {
@@ -426,7 +346,6 @@ function setupModal() {
     }
 }
 
-// TÍTULO FIJO DE SECCIÓN (esquina inferior izquierda)
 function setupSectionTitle() {
     let titleEl = document.getElementById('sectionTitleFixed');
     if (!titleEl) {
@@ -439,12 +358,6 @@ function setupSectionTitle() {
     const groupContainers = document.querySelectorAll('.group-container');
     if (!groupContainers.length) return;
 
-    const intro = document.getElementById('pageIntro');
-    const footer = document.getElementById('pageFooter');
-
-    titleEl.textContent = '';
-    titleEl.style.opacity = '0';
-
     let currentRef = null;
 
     function updateTitleFor(ref) {
@@ -455,27 +368,14 @@ function setupSectionTitle() {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            const visibleRatio = entry.intersectionRect.height / window.innerHeight;
-            if (visibleRatio <= 0.5) return;
-
-            if (entry.target.classList.contains('group-container')) {
+            if (entry.isIntersecting) {
                 currentRef = entry.target.dataset.ref;
                 updateTitleFor(currentRef);
-            } else {
-                // Estamos en el header o en el footer: ocultar título
-                currentRef = null;
-                titleEl.style.opacity = '0';
             }
         });
-    }, {
-        root: null,
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
-    });
+    }, { rootMargin: "-40% 0px -40% 0px" });
 
     groupContainers.forEach(group => observer.observe(group));
-    if (intro) observer.observe(intro);
-    if (footer) observer.observe(footer);
-
     document.addEventListener('introFinished', () => updateTitleFor(currentRef), { once: true });
 }
 
@@ -485,26 +385,29 @@ function attachTooltip(el, text) {
     tooltip.textContent = text;
     document.body.appendChild(tooltip);
 
-    el.addEventListener('mouseenter', () => {
-        tooltip.style.opacity = '1';
-    });
+    let ticking = false;
 
+    el.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
     el.addEventListener('mousemove', (e) => {
-        const offset = 14;
-        const rect = tooltip.getBoundingClientRect();
-        let left = e.clientX + offset;
-        let top = e.clientY + offset;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const offset = 14;
+                const rect = tooltip.getBoundingClientRect();
+                let left = e.clientX + offset;
+                let top = e.clientY + offset;
 
-        if (left + rect.width + 8 > window.innerWidth) left = e.clientX - rect.width - offset;
-        if (top + rect.height + 8 > window.innerHeight) top = e.clientY - rect.height - offset;
+                if (left + rect.width + 8 > window.innerWidth) left = e.clientX - rect.width - offset;
+                if (top + rect.height + 8 > window.innerHeight) top = e.clientY - rect.height - offset;
 
-        tooltip.style.left = left + 'px';
-        tooltip.style.top = top + 'px';
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
-    el.addEventListener('mouseleave', () => {
-        tooltip.style.opacity = '0';
-    });
+    el.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
 }
 
 function setupTooltips() {
@@ -520,20 +423,27 @@ function renderCV() {
 
     const entryHTML = (e) => `
         <div class="cv-entry">
+            <span class="cv-dates">${e.dates}</span>
             <span class="cv-role">${e.role}</span>
-            <span class="cv-meta">${e.place} · ${e.dates}</span>
+            <span class="cv-meta">${e.place}</span>
         </div>`;
 
-    let html = '';
-    html += '<div class="cv-section-title">Experiencia profesional</div>' + CV_DATA.experiencia.map(entryHTML).join('');
-    html += '<div class="cv-section-title">Formación</div>' + CV_DATA.formacion.map(entryHTML).join('');
-    html += '<div class="cv-section-title">Herramientas y habilidades</div><ul class="cv-skills-list">' +
-        CV_DATA.herramientas.map(h => `<li>${h}</li>`).join('') + '</ul>';
-    html += '<div class="cv-section-title">Idiomas</div><ul class="cv-lang-list">' +
-        CV_DATA.idiomas.map(i => `<li>${i.idioma}: ${i.nivel}</li>`).join('') + '</ul>';
-    html += '<div class="cv-section-title">Actividad artística</div>' + CV_DATA.actividad.map(entryHTML).join('');
+    const section = (title, content) => `
+        <section class="cv-section">
+            <h2 class="cv-section-title">${title}</h2>
+            <div class="cv-section-body">${content}</div>
+        </section>`;
 
-    body.innerHTML = html;
+body.innerHTML =
+'       <section class="cv-section"><div></div><div class="cv-section-body"><div class="cv-entry"><span     class="cv-role">' + CV_DATA.ubicacion + '</span></div></div></section>'+
+    section('Experiencia profesional', CV_DATA.experiencia.map(entryHTML).join('')) +
+    section('Formación', CV_DATA.formacion.map(entryHTML).join('')) +
+    section('Actividad artística', CV_DATA.actividad.map(entryHTML).join('')) +
+    section('Herramientas y habilidades',
+        '<ul class="cv-skills-list">' + CV_DATA.herramientas.map(h => `<li>${h}</li>`).join('') + '</ul>') +
+    section('Idiomas',
+        '<ul class="cv-lang-list">' + CV_DATA.idiomas.map(i => `<li>${i.idioma}: ${i.nivel}</li>`).join('') + '</ul>') 
+            
 }
 
 function setupCVModal() {
@@ -552,9 +462,22 @@ function setupCVModal() {
     const close = () => modal.classList.remove('cv-modal-open');
 
     if (closeBtn) closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    modal.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('cv-modal-open')) close();
+    });
+}
+
+function setupNavIcon() {
+    const icon = document.querySelector('.nav-icon');
+    if (!icon) return;
+
+    icon.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            document.body.classList.toggle('texts-hidden');
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     });
 }
 
