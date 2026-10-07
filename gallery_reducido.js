@@ -13,7 +13,7 @@ const CV_DATA = {
         { role: "Bachillerato en Artes Plásticas", place: "Escuela de Arte de Zaragoza", dates: "2017-2019" },
     ],
     herramientas: [
-         "Paquete Adobe","Blender", "Zbrush","HTML/CSS", "ComfyUI", "Resolume Arena",  "Paquete Office", "Modelado 3D", "Vibe Coding", "Linux", "Carpintería básica", "Video Mapping", "Fotografía", "Ilustración", 
+         "Paquete Adobe","Blender", "Zbrush","HTML/CSS", "Figma", "ComfyUI", "Resolume Arena",  "Paquete Office", "Modelado 3D", "Vibe Coding", "Linux", "Carpintería básica", "Video Mapping", "Fotografía", "Ilustración", 
     ],
     idiomas: [
         { idioma: "Castellano", nivel: "nativo" },
@@ -31,13 +31,13 @@ const CV_DATA = {
 
 const TEXTOS = {
     vacio: "",
-    postt: "2024\n_ilustración\n_modelado 3D\nIlustraciones gráficas realizadas para el periódico The Posttraumatic...",
-    SOPA: "SOPA fue una editorial ficticia de posters que nunca se llegaron a imprimir.",
-    romance: "2024/2025\n_dirección estética\n_diseño gráfico\n_edición de vídeo\nConjunto de piezas gráficas y audiovisuales para acompañar el trabajo de @digital.romance.tt como tatuadora",
-    breiner: "2024\n_motion graphics\n_diseño gráfico\n_videomapping\n_visuales(imágenes de @allahimsenicokseviyorum_2)\nCartelería, visuales y contenido para redes para el último evento del colectivo de DJs Badelbow & friends",
-    farola: "2024\n_editorial\n_preimpresión digital\nMaquetación de la publicación realizada para la exposición Making Things (ESAP, Oporto)",
+    postt: "2024\n\n_ilustración\n_modelado 3D\n\nIlustraciones gráficas realizadas para el periódico The Posttraumatic.",
+   
+    romance: "2024/2025\n\n_dirección estética\n_diseño gráfico\n_edición de vídeo\n\nConjunto de piezas gráficas y audiovisuales para acompañar el trabajo de @digital.romance.tt como tatuadora\n",
+    breiner: "2024\n\n_motion graphics\n_diseño gráfico\n_videomapping\n_visuales(imágenes de @allahimsenicokseviyorum_2)\n\nCartelería, visuales y contenido para redes para el último evento del colectivo de DJs Badelbow & friends",
+    farola: "2024\n\n_editorial\n_preimpresión digital\n\nMaquetación de la publicación realizada para la exposición Making Things (ESAP, Oporto)",
 
-    lyricVideo: "2026\nUnofficial lyric video de la canción 'Square Heart' 7038634357\nrealizado con John Mark Hill en Tabakalera, Donosti",
+    lyricVideo: "2026\n\nUnofficial lyric video de la canción 'Square Heart' 7038634357 realizado con John Mark Hill en Tabakalera, Donosti",
 };
 
 const TITULOS = {
@@ -174,7 +174,8 @@ function initGallery() {
     setupIntroScreen();
     setupCVModal();
     setupCaptionBehavior();
-     setupNavIcon();
+    setupNavIcon();
+    setupNavIconHover();
 }
 
 function setupCaptionBehavior() {
@@ -479,6 +480,44 @@ function setupNavIcon() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
+}
+const NAV_ICON_DURATION = 1000;   // ms: pon aquí la duración medida
+let navIconPlaying = false;
+
+function playNavIconOnce() {
+    const icon = document.querySelector('.nav-icon');
+    if (!icon || !icon.dataset.animated || navIconPlaying) return;
+
+    navIconPlaying = true;
+    icon.src = icon.dataset.animated;
+
+    setTimeout(() => {
+        icon.src = icon.dataset.static;   // vuelve al primer frame
+        navIconPlaying = false;
+    }, NAV_ICON_DURATION);
+}
+
+function setupNavIconHover() {
+    const icon = document.querySelector('.nav-icon');
+    if (!icon || !icon.dataset.animated) return;
+
+    new Image().src = icon.dataset.animated;   // precarga
+    icon.addEventListener('mouseenter', playNavIconOnce);
+}
+function wrapTextIntoWordSpans(el, text) {
+    el.textContent = '';
+    if (!text) return;
+
+    const i = text.indexOf('\n');
+    const first = i === -1 ? text : text.slice(0, i);
+    const rest  = i === -1 ? ''   : text.slice(i);
+
+    const date = document.createElement('span');
+    date.className = 'caption-date';
+    date.textContent = first;          // "2024", "2024/2025", "2026"...
+    el.appendChild(date);
+
+    if (rest) el.appendChild(document.createTextNode(rest));
 }
 
 document.addEventListener("DOMContentLoaded", initGallery);

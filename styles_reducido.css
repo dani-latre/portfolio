@@ -1,15 +1,39 @@
-/* ESTRUCTURA BASE */
-:root{
+/* =====================================================
+   ÍNDICE
+   1. Variables y base
+   2. Galería (zona de imágenes)
+   3. Pie de texto (columna derecha)
+   4. Elementos fijos: nombre, navegador, título de sección
+   5. Modal de imágenes
+   6. Tooltip
+   7. Intro de pantalla, intro de página y footer
+   8. Modal del CV
+   9. Móvil (≤ 768px)  ← siempre al final
+   ===================================================== */
+
+
+/* =====================================================
+   1. VARIABLES Y BASE
+   ===================================================== */
+:root {
     --tipo: #252927;
     --fondo: #fef9f5;
-    --text-color: #333;
     --font-family-1: GulimChe, Arial, sans-serif;
-    --font-family-2: Stack Sans Headline, Arial, sans-serif;
-    --caption-bg: #fff; /* debe coincidir con el fondo real detrás del texto (.group-container) */
-   /* --v1: rgb(255, 0, 0 );
-    --v2: rgb(0, 55, 255 );*/
-}
+    --font-family-2: "Stack Sans Headline", Arial, sans-serif;
+    --font-family: var(--font-family-1);
 
+    /* colores de depuración: pon uno (p. ej. rgba(255,0,0,.3)) para ver las cajas */
+    --v1: transparent;
+    --v2: transparent;
+
+    /* layout escritorio */
+    --col: 57%;      /* dónde empieza la columna derecha */
+    --edge: 32px;    /* margen a los bordes de la pantalla */
+
+    /* navegador */
+    --nav-icon: clamp(200px, 16vh, 170px);   /* tamaño del icono */
+    --nav-font: 1.25rem;                     /* tamaño del texto */
+}
 
 body, html {
     margin: 0;
@@ -17,145 +41,227 @@ body, html {
     background-color: var(--fondo);
     font-family: var(--font-family);
     font-weight: 500;
- 
-}
-link {
-    text-decoration: none;
-    color: inherit;
 }
 
 #imageSpace {
     width: 100%;
 }
 
-/* CONTENEDOR DE GRUPO */
+
+/* =====================================================
+   2. GALERÍA (zona de imágenes)
+   ===================================================== */
 .group-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;   /* <-- añade esto */
     position: relative;
+    display: flex;
     align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
     background-color: var(--fondo);
     font-family: var(--font-family-1);
-    
 }
 
-/* IZQUIERDA: IMÁGENES PEGADAS (SIN GAP) */
 .media-list {
-margin-top: 120px;
-    margin-left: 24px;
-    width: 50%;               /* Ancho máximo del contenedor de la galería */
     display: flex;
     flex-direction: column;
-    gap: 64px;           
-    line-height: 0;
-    align-items: flex-start;  /* Elimina huecos tipográficos */
+    align-items: flex-start;
+    gap: 64px;
+    width: 50%;
+    margin-top: 120px;
+    margin-left: 24px;
+    line-height: 0;               /* elimina huecos tipográficos */
 }
 
-/* 1. Centra el contenido dentro del contenedor de la imagen */
 .media-wrapper {
-    width: 100%;
     display: flex;
-    justify-content: center; /* Centra horizontalmente la imagen/vídeo dentro de su contenedor */
+    justify-content: center;
     align-items: center;
+    width: 100%;
     overflow: hidden;
-    mix-blend-mode: multiply; /* o exclusion, multiply, screen... */
+    mix-blend-mode: multiply;
 }
 
-/* 2. Ajusta las imágenes y vídeos */
-.media-wrapper img, 
+.media-wrapper img,
 .media-wrapper video {
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto; /* Refuerza el centrado */
+    margin: 0 auto;
     object-fit: contain;
 }
 
-
+/* tamaños individuales (se asignan con size: "size-s" en mediaItems) */
 .media-wrapper.size-s { width: 40%; }
 .media-wrapper.size-m { width: 70%; }
 .media-wrapper.size-l { width: 100%; }
 
 .media-wrapper.size-s,
 .media-wrapper.size-m {
-    margin: 0 auto;   /* centrado dentro de .media-list */
+    margin: 0 auto;               /* centrado dentro de .media-list */
 }
 
-/* DERECHA: EL CARRIL DEL TEXTO */
+
+/* =====================================================
+   3. PIE DE TEXTO (columna derecha)
+   ===================================================== */
 .caption-wrapper {
-    width: 40%;
     position: relative;
     display: flex;
-    flex-direction: column;     /* nuevo */
-    align-items: flex-start;      /* antes justify-content: flex-end */
+    flex-direction: column;
+    align-items: flex-start;
+    width: calc(100% - var(--col));
+    margin-left: auto;
+    padding-right: calc(var(--nav-icon) + 80px + var(--edge));   /* reserva el hueco del navegador */
+    box-sizing: border-box;
 }
 
+/* se queda fijo abajo mientras pasan las imágenes del grupo;
+   si el texto crece, lo hace hacia arriba */
 .sticky-content {
-    font-family: var(--font-family-2);
-    font-size: 1.25rem;
     position: sticky;
-    bottom: 80px;               /* margen fijo hasta el bottom de la pantalla */
-    margin-top: auto;           /* posición natural al final del contenedor */
-    width: 100%;
-    max-width: 600px;
+    bottom: 56px;                 /* deja sitio al título, que va debajo */
+    margin-top: auto;             /* posición natural: final del grupo */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: 12px 24px 0px 24px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 360px;
+    padding: 0;
     box-sizing: border-box;
     background-color: var(--v1);
-    /* quita: top, height, justify-content, align-self, margin-left */
 }
 
 .image-caption {
+    width: 100%;
+    margin-bottom: 64px;
+    font-family: var(--font-family-2);
     font-size: 1rem;
+    font-weight: normal;
     line-height: 1.5;
     color: #141414;
-    text-align: left;        /* Alinea el texto a la derecha */
-    align-self: flex-s;    /* Alinea el bloque al borde derecho */
-    margin: 0;
-    width: 100%;
-    bottom: 100%;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    font-weight:normal;
-    font-family: var(--font-family-2);
-    background-color: var(--v2); /* Fondo sólido detrás del texto */
+    text-align: left;
+    white-space: pre-line;        /* respeta los \n de TEXTOS */
+    background-color: var(--v2);
+}
 
-    white-space: pre-line;
+.caption-date {
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   4. ELEMENTOS FIJOS
+   ===================================================== */
+
+/* --- nombre: arriba a la derecha --- */
+.name {
+    position: fixed;
+    top: var(--edge);
+    right: var(--edge);
+    z-index: 500000;
+    font-family: var(--font-family-1);
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--tipo);
+    -webkit-text-stroke: 0.8px var(--tipo);
+}
+
+/* --- navegador: abajo a la derecha ---
+        teléfono | icono
+        e-mail   | cv                                  */
+.contact-info-fixed {
+    --gap-x: 4px;
+    --gap-y: 4px;
+    --pad: 4px;
+
+    position: fixed;
+    right: var(--edge);
+    bottom: var(--edge);
+    z-index: 500;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+        "phone icon"
+        "mail  cv";
+    align-items: center;
+    column-gap: var(--gap-x);
+    row-gap: var(--gap-y);
+    font-family: var(--font-family-1);
+    font-size: var(--nav-font);
+    line-height: 1.5;
+    color: var(--tipo);
+    background-color: var(--v1);
+}
+
+.contact-info-fixed a {
+    padding: var(--pad);
+    color: var(--tipo);
+    text-decoration: none;
+    background-color: var(--v2);
+}
+
+.contact-info-fixed a:hover {
+    -webkit-text-stroke: 0.8px var(--tipo);   /* simula negrita sin mover nada */
+}
+
+.nav-phone { grid-area: phone; align-self:flex-end; justify-self: end; text-align: left; -webkit-text-stroke: 1.8px var(--tipo); }
+.nav-mail  { grid-area: mail;  justify-self: start; -webkit-text-stroke: 1.8px var(--tipo);}
+.nav-cv    { grid-area: cv;    justify-self: end; -webkit-text-stroke: 1.8px var(--tipo);}
+
+.nav-icon {
+    grid-area: icon;
+    display: block;
+    width: var(--nav-icon);
+    height: auto;
+    cursor: pointer;
+    mix-blend-mode: multiply;
+    background-color: var(--v2);
+    margin: calc(var(--nav-icon) * -0.09);   /* recorta un 8% por cada lado: ajusta a ojo */
+}
+
+
+/* --- título de sección: abajo, alineado con el pie de texto --- */
+.section-title-fixed {
+    position: fixed;
+    left: var(--col);
+    bottom: var(--edge);
+    z-index: 500;
+    font-family: var(--font-family-2);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--tipo);
+    pointer-events: none;
+    opacity: 0;                   /* el JS lo pone a 1 */
+    transition: opacity 0s ease;
+    background-color: var(--v1);
     
 }
 
 
-/* En pantallas muy anchas, limitamos el ancho del texto para que no se estire
-   de punta a punta y siga siendo cómodo de leer. En portátiles (por debajo del
-   umbral) se mantiene el comportamiento actual (max-width: 100%). */
-
-@media (min-width: 1600px) {
-    .image-caption {
-        max-width: 1500px;
-    }
-}
-
-
-
-/* MODAL */
+/* =====================================================
+   5. MODAL DE IMÁGENES
+   ===================================================== */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background-color: var(--fondo);
     z-index: 10000;
     justify-content: center;
     align-items: center;
+    background-color: var(--fondo);
 }
-.modal-content img, .modal-content video {
+
+.modal-content img,
+.modal-content video {
     max-width: 90vw;
     max-height: 90vh;
 }
 
-/* ENVOLTORIO QUE SE AJUSTA AL TAMAÑO REAL DE LA IMAGEN/VIDEO MOSTRADO */
+/* se ajusta al tamaño real de la imagen/vídeo mostrado */
 .modal-media-wrapper {
     position: relative;
     display: inline-block;
@@ -169,14 +275,14 @@ margin-top: 120px;
     max-height: 90vh;
 }
 
-/* ZONAS DE NAVEGACIÓN: mitad izquierda / mitad derecha de la propia imagen */
+/* zonas de navegación: mitad izquierda / derecha de la propia imagen */
 .modal-nav-zone {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 50%;
     display: flex;
     align-items: center;
+    width: 50%;
     cursor: pointer;
 }
 
@@ -196,26 +302,6 @@ margin-top: 120px;
     cursor: none;
 }
 
-/* Flecha que sigue al ratón, con blend mode (esto SÍ es posible en un elemento normal) */
-#modalCursorArrow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 32px;
-    height: 32px;
-    pointer-events: none;
-    z-index: 10002;
-    display: none;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-}
-
-#modalCursorArrow svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 .modal-nav-zone.zone-disabled {
     cursor: default;
     pointer-events: none;
@@ -225,327 +311,140 @@ margin-top: 120px;
     display: none;
 }
 
-
-.name{
+/* flecha que sigue al ratón */
+#modalCursorArrow {
     position: fixed;
-    bottom: 20px;
-    right: 40px;
-    z-index: 500000;
-    font-family: var(--font-family-1);
-    font-size: 1rem;
-    line-height: 0;
-    color: var(--tipo);
-}
-/* BLOQUE DE CONTACTO FIJO (esquina superior derecha) */
-.contact-info-fixed {
-    --gap-x: 4px;    /* separación horizontal entre columnas */
-    --gap-y: 4px;    /* separación vertical entre filas */
-    --pad: 4px;      /* aire interno de cada elemento */
-
-    position: fixed;
-    top: 3vh;
-    right: 40px;
-    z-index: 500;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-areas:
-        "phone icon mail"
-        ".     cv   .";
-    align-items: center;
-    column-gap: var(--gap-x);
-    row-gap: var(--gap-y);
-    font-family: var(--font-family-1);
-    font-size: 1.25rem;
-    line-height: 1.4;            /* antes 1.8 */
-    color: var(--tipo);
-    background-color: var(--v1);
-}
-
-.contact-info-fixed a {
-    color: var(--tipo);
-    text-decoration: none;
-    padding: var(--pad);
-    background-color: var(--v2);
-}
-
-.nav-phone { 
-    grid-area: phone; 
-    text-align: right; 
-
-}
-
-.nav-mail  { 
-    grid-area: mail;  
-    align-self: center; 
-}
-
-.nav-cv    { 
-    grid-area: cv;    
-    justify-self: right; 
-}
-
-.nav-icon {
-    grid-area: icon;
-    width: 9vh;
-    height: auto;
-    display: block;
-    background-color: var(--v2);
-    mix-blend-mode: multiply; 
-    cursor: pointer;
-}
-.nav-icon :hover {
-    -webkit-text-stroke: 0.8px var(--tipo);
-}
-
-.contact-info-fixed a:hover {
-     -webkit-text-stroke: 0.8px var(--tipo);
-}
-
-/* TÍTULO FIJO DE SECCIÓN (esquina inferior izquierda) */
-.section-title-fixed {
-    justify-content: center;
-    position: fixed;
-    bottom: 20px;
-    right: 40%;
-    z-index: 500;
-    font-family: var(--font-family-2);
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--tipo);
+    top: 0;
+    left: 0;
+    z-index: 10002;
+    display: none;
+    width: 32px;
+    height: 32px;
     pointer-events: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    opacity: 0;
-    transition: opacity 0s ease;
-    background-color: var(--v1); /* Fondo sólido detrás del texto */
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
 }
 
-@media (max-width: 768px) {
-    html, body {
-    overflow-x: clip;
-}
-
-.contact-info-fixed {
-        --gap-x: 4px;
-    --pad: 2px;
-    font-size: 3.7vw;
-    line-height: 1.3;
-    top: 10px;
-    right: 5px;
-    transform: translateZ(0);
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-}
-.nav-icon {
-    width: 19vw;
-}
-
-
-
-    /* 1. Modal desactivado */
-    .modal { display: none !important; }
-    .modal-nav-zone { display: none !important; }
-
-    /* 2. Contenedor a ancho completo */
-.group-container {
+#modalCursorArrow svg {
     display: block;
-    width: 100%;     /* antes 100vw */
-    position: relative;
-}
-
-    /* 3. DESENFOQUE DE IMÁGENES: Cuando la info está activa */
-    body.show-captions-mobile .media-list {
-        
-        transition: filter 0.s ease;
-    }
-
- .media-list {
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
+    height: 100%;
 }
 
-.media-wrapper,
-.media-wrapper[class*="size-"] {
-    width: 100%;
-    margin: 0;
-}
 
-.media-wrapper img,
-.media-wrapper video {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-}
-
-    /* 4. EL CONTENEDOR STICKY (Overlay) */
-/* pie de texto siempre visible, anclado abajo y sobre las imágenes */
-@media (max-width: 768px) {
-    .caption-wrapper {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        overflow: visible;      /* importante: no pongas hidden/auto aquí */
-        opacity: 1;
-        visibility: visible;
-        pointer-events: none;
-        z-index: 100;
-    }
-
-    .sticky-content {
-        position: sticky;
-        bottom: 20px;           /* margen hasta el borde inferior de la pantalla */
-        margin-top: 0;
-        top: 70vh;
-        width: 100%;
-        max-width: none;
-        height: auto;
-        padding: 0 20px 0 0;
-        box-sizing: border-box;
-        display: block;
-        align-self: auto;
-        background-color: transparent;
-    }
-    .contact-info-fixed a,
-    .caption-wrapper,
-    .section-title-fixed,
-    .name {
-         transition: opacity 0.2s ease;
-    }
-
-    body.texts-hidden .contact-info-fixed a,
-    body.texts-hidden .caption-wrapper,
-    body.texts-hidden .section-title-fixed,
-    body.texts-hidden .name {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-}
-
-.image-caption {
-    display: inline;
-    background-color:var(--fondo);
-    color: black !important;
-    font-family: Arial, sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    text-align: left;
-    padding: 0px;
-    margin: 0;
-    width: auto;
-    position: relative;
-    left: 10px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    text-shadow: none !important;
-}
-}
-
+/* =====================================================
+   6. TOOLTIP
+   ===================================================== */
 .custom-tooltip {
     position: fixed;
     top: 0;
     left: 0;
-    background: #ffffff00;           /* color sólido, no transparente */
-    color: #ffffff;
+    z-index: 20000;
     padding: 6px 10px;
     border-radius: 4px;
-    font-size: 1.2rem;
     font-family: var(--font-family);
+    font-size: 1.2rem;
+    color: #fff;
+    background: transparent;
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.15s ease;
-    z-index: 20000;
-    mix-blend-mode: difference;   /* o exclusion, multiply, screen... */
+    mix-blend-mode: difference;
 }
 
+
+/* =====================================================
+   7. INTRO DE PANTALLA, INTRO DE PÁGINA Y FOOTER
+   ===================================================== */
 #introScreen {
     position: fixed;
     inset: 0;
-    background-color: var(--fondo);
     z-index: 99999;
-    display:inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--fondo);
     opacity: 1;
     transition: opacity 1s ease;
 }
- #introScreen img {
-    max-width: 80%;
-    max-height: 80%;
+
+#introScreen img {
+    max-width: 20%;
+    max-height: 20%;
     object-fit: contain;
-    mix-blend-mode: multiply; /* o exclusion, multiply, screen... */
- }
+    mix-blend-mode: multiply;
+}
+
 #introScreen.intro-hidden {
     opacity: 0;
-    pointer-events: none; /* para que no bloquee clics una vez desvanecida */
+    pointer-events: none;         /* no bloquea clics una vez desvanecida */
 }
 
 #introText {
+    margin: 0;
     font-family: var(--font-family);
     font-size: 1rem;
+    line-height: 1.4;
     color: var(--tipo);
     text-align: center;
-    line-height: 1.4;
-    margin: 0;
 }
 
-/* Mientras se muestra la intro, que no se pueda hacer scroll por detrás */
+/* sin scroll mientras se muestra la intro */
 body.intro-active {
     overflow: hidden;
     height: 100vh;
 }
+
 #pageIntro {
-    min-height: 91vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    min-height: 91vh;
     padding: 40px;
     box-sizing: border-box;
-    background-color: var(--fondo); /* mismo fondo que el body, distinto al blanco de las secciones */
+    text-align: center;
+    background-color: var(--fondo);
 }
 
 #pageIntro p {
+    max-width: 700px;
+    margin: 0;
     font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.6;
     color: var(--tipo);
-    max-width: 700px;
-    margin: 0;
 }
+
 #pageFooter {
-    padding: 20px 20px;
-    padding-top: 500px;
+    padding: 500px 20px 20px;
     text-align: start;
-    background-color: var(--fondo); /* mismo fondo que el body, distinto al blanco de las secciones */
+    background-color: var(--fondo);
 }
 
 #pageFooter p {
+    margin: 0;
     font-family: var(--font-family);
     font-size: 0.9rem;
     color: var(--tipo);
     opacity: 0.7;
-    margin: 0;
 }
+
+
+/* =====================================================
+   8. MODAL DEL CV
+   ===================================================== */
 .cv-modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0);
     z-index: 30000;
     align-items: center;
     justify-content: center;
     padding: 0;
     box-sizing: border-box;
-    font-family:var(--font-family-2);   
+    font-family: var(--font-family-2);
+    background: transparent;
 }
 
 .cv-modal.cv-modal-open {
@@ -553,44 +452,32 @@ body.intro-active {
 }
 
 .cv-modal-content {
-    background: var(--fondo);
-    max-width: 100%;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 0px;
-    box-sizing: border-box;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
     font-family: var(--font-family-2);
     color: var(--tipo);
+    background: var(--fondo);
+    cursor: pointer;              /* se cierra al pulsar en cualquier parte */
 }
 
 .cv-close {
     position: absolute;
     top: 16px;
     right: 16px;
-    background: none;
-    border: none;
+    z-index: 2;
+    padding: 0;
     font-size: 2rem;
     line-height: 1;
-    cursor: pointer;
     color: var(--tipo);
-    z-index: 2;
+    background: none;
+    border: none;
+    cursor: pointer;
     -webkit-text-stroke: 0.8px var(--tipo);
-}
-
-.cv-section-title {
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform:lowercase;
-    letter-spacing: 1px;
-    margin: 30px 0 12px;
-    border-bottom: 1px  var(--tipo);
-    padding-bottom: 4px;
-}
-
-.cv-modal-content {
-    padding: 40px;               /* ahora mismo tienes 0 */
 }
 
 /* cada sección: título a la izquierda, contenido a la derecha */
@@ -603,8 +490,10 @@ body.intro-active {
 
 .cv-section-title {
     margin: 0;
+    padding-bottom: 4px;
     font-size: 1.3rem;
     font-weight: bold;
+    letter-spacing: 1px;
     text-transform: lowercase;
 }
 
@@ -613,42 +502,29 @@ body.intro-active {
     display: grid;
     grid-template-columns: 140px 1fr;
     column-gap: 20px;
-    margin-bottom: 16px;
-}
-
-.cv-dates { opacity: 0.7; }
-.cv-role  { font-weight: bold; }
-.cv-meta  { grid-column: 2; font-size: 1.1rem; opacity: 0.8; }
-
-/* móvil: todo en una columna */
-@media (max-width: 768px) {
-    .cv-modal-content { padding: 24px 16px; }
-    .cv-section { grid-template-columns: 1fr; row-gap: 12px; }
-    .cv-entry   { grid-template-columns: 1fr; }
-    .cv-meta    { grid-column: 1; }
-}
-
-.cv-entry .cv-role,
-.cv-entry .cv-meta { 
-    white-space: pre-line; 
-}
-
-.cv-entry {
     margin-bottom: 14px;
     line-height: 1.5;
 }
 
+.cv-dates {
+    opacity: 0.7;
+}
+
 .cv-entry .cv-role {
-    font-weight: bold;
     display: block;
+    font-weight: bold;
+    white-space: pre-line;
 }
 
 .cv-entry .cv-meta {
+    display: block;
+    grid-column: 2;
     font-size: 1.1rem;
     opacity: 0.8;
-    display: block;
+    white-space: pre-line;
 }
 
+/* herramientas e idiomas */
 .cv-skills-list,
 .cv-lang-list {
     margin: 0;
@@ -659,8 +535,8 @@ body.intro-active {
 .cv-skills-list li,
 .cv-lang-list li {
     display: inline-block;
-    font-size: 0.95rem;
     margin: 0 12px 8px 0;
+    font-size: 0.95rem;
 }
 
 .cv-skills-list li::after {
@@ -673,3 +549,174 @@ body.intro-active {
     content: '';
 }
 
+
+/* =====================================================
+   9. MÓVIL (≤ 768px)
+   Siempre al final: sobrescribe lo de escritorio.
+   ===================================================== */
+@media (max-width: 768px) {
+
+    :root {
+        --nav-icon: 19vw;
+        --nav-font: 3.2vw;
+        --nav-h: 140px;           /* altura aproximada del navegador */
+    }
+
+    html, body {
+        overflow-x: clip;         /* 'clip' y no 'hidden': no rompe position: sticky */
+    }
+
+    /* --- modal de imágenes desactivado --- */
+    .modal,
+    .modal-nav-zone {
+        display: none !important;
+    }
+
+    /* --- galería a ancho completo, sin márgenes --- */
+    .group-container {
+        display: block;
+    }
+
+    .media-list {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .media-wrapper,
+    .media-wrapper[class*="size-"] {
+        width: 100%;
+        margin: 0;
+    }
+
+    .media-wrapper img,
+    .media-wrapper video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* --- pie de texto: anclado abajo, siempre por encima del navegador --- */
+    .caption-wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        padding-right: 0;
+        overflow: visible;        /* importante: no poner hidden/auto aquí */
+        pointer-events: none;
+        z-index: 100;
+    }
+
+    .sticky-content {
+        display: block;
+        bottom: calc(var(--nav-h) + 12px);
+        max-width: none;
+        padding: 0 20px 0 0;
+        background-color: transparent;
+    }
+
+    .image-caption {
+        display: inline;
+        position: relative;
+        left: 10px;
+        width: auto;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: black !important;
+        text-shadow: none !important;
+        background-color:var(--fondo);
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        
+    }
+
+    /* --- navegador: franja inferior ---
+            teléfono ............ icono
+            e-mail ....... cv ......... (nombre fijo a la derecha)   */
+    .contact-info-fixed {
+        --pad: 2px;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-areas:
+            "phone phone icon"
+            "mail  cv    .";
+        align-items: end;
+        row-gap: 8px;
+        line-height: 1.3;
+        
+        pointer-events: none;             /* la franja no bloquea toques */
+        transform: translateZ(0);
+        will-change: transform;
+        
+        
+    }
+
+    .contact-info-fixed a,
+    .nav-icon {
+        pointer-events: auto;
+        
+    }
+    .nav-phone { justify-self: start;margin-bottom: 32px; }
+    .nav-icon { justify-self: end;  }
+    .nav-cv   { justify-self: center; }
+
+    /* el nombre sigue siendo fixed: se alinea con la fila de e-mail / cv */
+    .name {
+        top: 0;
+        bottom: auto;             /* 12px de padding del nav + 2px de --pad */
+        right: 20px;
+        font-size: var(--nav-font);
+        line-height: 1.3;
+        text-decoration: none;
+    }
+
+    /* --- título del proyecto: arriba a la izquierda, legible sobre cualquier fondo --- */
+    .section-title-fixed {
+        top: 12px;
+        bottom: auto;
+        left: 20px;
+        font-size: 0.8rem;
+        color: #fff;
+        mix-blend-mode: difference;
+    }
+
+    /* --- mostrar / ocultar textos con el icono (clase texts-hidden en el body) --- */
+    .contact-info-fixed a,
+    .caption-wrapper,
+    .section-title-fixed,
+    .name {
+        transition: opacity 0.2s ease;
+    }
+
+    body.texts-hidden .contact-info-fixed {
+        background-color: transparent;
+    }
+
+    body.texts-hidden .contact-info-fixed a,
+    body.texts-hidden .caption-wrapper,
+    body.texts-hidden .section-title-fixed,
+    body.texts-hidden .name {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* --- CV en una columna --- */
+    .cv-modal-content { padding: 24px 16px; }
+    .cv-section       { grid-template-columns: 1fr; row-gap: 12px; }
+    .cv-entry         { grid-template-columns: 1fr; }
+    .cv-entry .cv-meta { grid-column: 1; }
+}
+/*.contact-info-fixed *  { outline: 1px solid rgba(255, 0, 0, 0.5); }*/
