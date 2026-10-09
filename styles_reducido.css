@@ -30,9 +30,12 @@
     --col: 57%;      /* dónde empieza la columna derecha */
     --edge: 32px;    /* margen a los bordes de la pantalla */
 
-    /* navegador */
-    --nav-icon: clamp(200px, 16vh, 170px);   /* tamaño del icono */
-    --nav-font: 1.25rem;                     /* tamaño del texto */
+/* unidad base: el navegador y el título cuelgan de ella */
+--s: clamp(10px, 0.9vw, 16px);
+
+--nav-font: var(--s);
+--nav-icon: calc(var(--s) * 10);                        /* tamaño del icono */
+--nav-w:    calc(var(--nav-icon) + var(--s) * 4);      /* ancho aproximado del navegador entero */
 }
 
 body, html {
@@ -111,7 +114,7 @@ body, html {
     align-items: flex-start;
     width: calc(100% - var(--col));
     margin-left: auto;
-    padding-right: calc(var(--nav-icon) + 80px + var(--edge));   /* reserva el hueco del navegador */
+    padding-right: calc(var(--nav-w) + var(--edge) + 16px);   /* reserva el hueco del navegador */
     box-sizing: border-box;
 }
 
@@ -119,7 +122,7 @@ body, html {
    si el texto crece, lo hace hacia arriba */
 .sticky-content {
     position: sticky;
-    bottom: 56px;                 /* deja sitio al título, que va debajo */
+    bottom: calc(var(--edge) + var(--s) * 4);                   /* deja sitio al título, que va debajo */
     margin-top: auto;             /* posición natural: final del grupo */
     display: flex;
     flex-direction: column;
@@ -173,7 +176,7 @@ body, html {
     --gap-x: 4px;
     --gap-y: 4px;
     --pad: 4px;
-
+    
     position: fixed;
     right: var(--edge);
     bottom: var(--edge);
@@ -227,7 +230,8 @@ body, html {
     bottom: var(--edge);
     z-index: 500;
     font-family: var(--font-family-2);
-    font-size: 1.5rem;
+    font-size: calc(var(--s) * 1.1);
+    max-width: calc(100% - var(--col) - var(--nav-w) - var(--edge) - 16px);
     font-style: italic;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -655,7 +659,7 @@ body.intro-active {
         align-items: end;
         row-gap: 8px;
         line-height: 1.3;
-        
+        background-color: red;
         pointer-events: none;             /* la franja no bloquea toques */
         transform: translateZ(0);
         will-change: transform;
@@ -669,17 +673,18 @@ body.intro-active {
         
     }
     .nav-phone { justify-self: start;margin-bottom: 32px; }
-    .nav-icon { justify-self: end;  }
-    .nav-cv   { justify-self: center; }
+    .nav-icon { justify-self: end ; }
+    .nav-cv   { justify-self: center; background-color: var(--fondo)}
 
     /* el nombre sigue siendo fixed: se alinea con la fila de e-mail / cv */
     .name {
-        top: 0;
+        top: 6px;
         bottom: auto;             /* 12px de padding del nav + 2px de --pad */
         right: 20px;
         font-size: var(--nav-font);
-        line-height: 1.3;
+        
         text-decoration: none;
+        background-color: var(--fondo)
     }
 
     /* --- título del proyecto: arriba a la izquierda, legible sobre cualquier fondo --- */
@@ -688,8 +693,9 @@ body.intro-active {
         bottom: auto;
         left: 20px;
         font-size: 0.8rem;
-        color: #fff;
-        mix-blend-mode: difference;
+        color: #000000;
+        background-color: var(--fondo);
+        
     }
 
     /* --- mostrar / ocultar textos con el icono (clase texts-hidden en el body) --- */
