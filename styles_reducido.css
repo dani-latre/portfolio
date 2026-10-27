@@ -659,7 +659,10 @@ body.intro-active {
         align-items: end;
         row-gap: 8px;
         line-height: 1.3;
-        background-color: red;
+        background-color: rgba(103, 95, 95, 0);
+        filter: blur(0px);
+        mix-blend-mode:hard-light;
+        
         pointer-events: none;             /* la franja no bloquea toques */
         transform: translateZ(0);
         will-change: transform;
@@ -670,7 +673,7 @@ body.intro-active {
     .contact-info-fixed a,
     .nav-icon {
         pointer-events: auto;
-        
+        border-radius: 1px solid rgb(255, 0, 0);
     }
     .nav-phone { justify-self: start;margin-bottom: 32px; }
     .nav-icon { justify-self: end ; }
